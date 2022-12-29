@@ -6,5 +6,7 @@ urlpatterns = [
       path('Home', views.Home, name="home"),
       path('register', views.Register, name="register"),
       path('change-password', views.Forgetpwd, name="change-password"),
+      path('HelloAPI', views.HelloView.as_view(), name="change-password"),
+      
 
 ]
