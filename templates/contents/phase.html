@@ -1,0 +1,81 @@
+{% extends 'base_page.html' %}
+{% load static %}
+{% block title %}Phase{% endblock %} 
+{% load crispy_forms_tags %}
+{% load crispy_forms_filters %}
+{% block content %}
+{% load crispy_forms_tags %}
+<main>
+  <div class="container-fluid px-4">
+    <div class="row">
+      <ol class="breadcrumb mb-4">
+          <li class="breadcrumb-item active">Phase/</li>
+      </ol>
+      <div class="col">
+          <div class="col-xl-12 col-lg-6">
+            <h4 class="card-title">Phase Registration</h4>
+          <form class="form-sample" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+          
+            <div class="row mb-0">
+              <div class="col-md-16">
+                <div class="form-group row mb-0">
+                  <div class="col-sm-12">
+                    {{ form.Phase_name|as_crispy_field }}
+                  </div>
+                  <div class="col-sm-12">
+                    {{ form.Phase_location|as_crispy_field }}
+                  </div>
+                  <div class="col-sm-12">
+                    {{ form.Starting_date|as_crispy_field }}
+                  </div>
+                  <div class="col-sm-12">
+                    {{ form.Ending_date|as_crispy_field }}
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="d-flex align-items-center justify-content-between mt-1 mb-0">
+            <div></div>
+              <button
+                type="submit"
+                class="btn btn-block btn-primary btn-lg font-weight-small auth-form-btn"
+                style="" >
+                Done
+              </button>
+            </div>
+          
+          </form>
+          
+          </div>
+          
+        </div>
+        <div class="col"> 
+           <h4 class="card-title">Phases with in a project</h4>
+           <div class="table-responsive">
+            <table class="table table-hover">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Phase Name</th>
+                  <th>Phase Location</th>
+                  <th>Starting Date</th>
+                  <th>Ending Date</th>
+                
+
+                </tr>
+              </thead>
+              <tbody>
+                
+              </tbody>
+            </table>
+
+          </div>
+          </div>
+      </div>
+      
+  </div>
+ 
+</main>
+
+{%endblock%}

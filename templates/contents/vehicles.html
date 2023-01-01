@@ -1,0 +1,93 @@
+{% extends 'base_page.html' %}
+{% load static %}
+{% block title %}Phase{% endblock %} 
+{% load crispy_forms_tags %}
+{% load crispy_forms_filters %}
+{% block content %}
+{% load crispy_forms_tags %}
+<main>
+  <div class="container-fluid px-4">
+    <div class="row">
+      <ol class="breadcrumb mb-4">
+          <li class="breadcrumb-item active">Vehicles/</li>
+      </ol>
+      <div class="col">
+          <div class="col-xl-12 col-lg-6">
+            <h4 class="card-title">Vehicles needed</h4>
+          <form class="form-sample" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+          
+            <div class="row mb-0">
+              <div class="col-md-16">
+                <div class="form-group row mb-0">
+                  <div class="col-sm-12">
+                    {{ form.vehicle_category|as_crispy_field }}
+                  </div>
+                  <div class="col-sm-12">
+                    {{ form.vehicle_image|as_crispy_field }}
+                  </div>
+                  {% comment %} <div class="col-sm-12">
+                    {{ form.Roads|as_crispy_field }}
+                  </div> {% endcomment %}
+                  {% comment %} <div class="col-sm-12">
+                    {{ form.Ending_date|as_crispy_field }}
+                  </div> {% endcomment %}
+                </div>
+              </div>
+            </div>
+            <div class="d-flex align-items-center justify-content-between mt-1 mb-0">
+            <div></div>
+              <button
+                type="submit"
+                class="btn btn-block btn-primary btn-lg font-weight-small auth-form-btn"
+                style="" >
+                Done
+              </button>
+            </div>
+          
+          </form>
+          
+          </div>
+          
+        </div>
+        <div class="col"> 
+           <h4 class="card-title">Spots with in a roads</h4>
+           <div class="table-responsive">
+            <table class="table table-hover">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Vehicle Category</th>
+                  <th>Vehicle Image</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% if  vehicles %}
+              {#   Loop for retrieve all registered vehicle  #}
+           {% for vehicle in vehicles  %}
+                <tr>
+                  <td>{{ vehicle.vehicle_category}}</td>
+                  <td>{{ vehicle.vehicle_image}}</td>
+                </tr>
+           {% endfor %}
+
+           {% else %}
+           <tr>
+            <td colspan="17"><center> 
+              There is no registered vehicles yet.
+              </center>
+              </td>
+           </tr>
+         {% endif %}
+              </tbody>
+            </table>
+
+          </div>
+          </div>
+      </div>
+      
+  </div>
+ 
+</main>
+
+{%endblock%}

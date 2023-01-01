@@ -1,0 +1,63 @@
+<nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+    <div class="sb-sidenav-menu">
+        <div class="nav">
+            <div class="sb-sidenav-menu-heading">SUMMARY</div>
+            <a class="nav-link" href="{% url 'dashboard' %}">
+                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                Dashboard
+            </a>
+            <a class="nav-link" href="{% url 'overalldata' %}">
+                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                Data <!--Adding icon for data-->
+            </a>
+            <div class="sb-sidenav-menu-heading">Traffic Counting</div>
+            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+                <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                Project
+                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+            </a>
+            <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                <nav class="sb-sidenav-menu-nested nav">
+                    <a class="nav-link" href="{% url 'createphase' %}">Phase</a>
+                    <a class="nav-link" href="{% url 'createroads' %}">Roads</a>
+                    <a class="nav-link" href="{% url 'createspots' %}">Spots</a>
+                    <a class="nav-link" href="{% url 'registervehicle' %}">Vehicles</a>
+           
+
+                </nav>
+            </div>
+            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
+                <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
+                Collectors
+                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+            </a>
+            <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
+                <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
+                    <a class="nav-link collapsed" href="{% url 'collectorlist' %}"  aria-expanded="false">
+                       All
+                    </a>
+                    
+                    <a class="nav-link collapsed" href="{% url 'collectorregister' %}"  aria-expanded="false">
+                        Register
+                    </a>
+                </nav>
+            </div>
+            <div class="sb-sidenav-menu-heading">Traffic Analysis</div>
+            <a class="nav-link" href="{% url 'cleandata' %}">
+                <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
+                Cleaning
+            </a>
+            <a class="nav-link" href="{% url 'report' %}">
+                <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
+                Report
+            </a>
+        </div>
+    </div>
+    <div class="sb-sidenav-footer">
+      {% if request.user.is_authenticated %}
+        <div class="small">Logged in as: {{ request.user.last_name }}</6></div>
+       
+       
+        {% endif %}
+    </div>
+</nav>

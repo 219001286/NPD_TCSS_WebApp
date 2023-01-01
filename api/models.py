@@ -25,6 +25,7 @@ class Vehicle(models.Model):
     vehicle_image = models.ImageField(null=True)
     updated = models.DateTimeField(auto_now=True)
     created = models.DateTimeField(auto_now_add=True)
+
     class Meta:
         ordering = ['-updated', '-created'] 
 
@@ -35,6 +36,7 @@ class Vehicle(models.Model):
 class counting (models.Model):
     collector = models.ForeignKey('accounts.CustomUser', on_delete=models.CASCADE, related_name="collector_vehicles", null=True)
     vehicle = models.ForeignKey('Vehicle', on_delete=models.CASCADE)
+    Traffic_countings = models.IntegerField(null = True)
     updated = models.DateTimeField(auto_now=True)
     created = models.DateTimeField(auto_now_add=True)
     class Meta:
