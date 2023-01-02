@@ -12,7 +12,7 @@ from django.urls import reverse_lazy
 from accounts.models import CustomUser
 import datetime
 from django.db.models import Count, Sum
-from .models import Phase, Vehicle
+from .models import Phase, Vehicle, Roads, Spots
 from django.views import generic
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .forms import PhaseRegistrationForm, RoadRegistrationForm, SpotRegistrationForm, VehicleRegistrationForm
@@ -54,27 +54,54 @@ class CollectedData( LoginRequiredMixin, ListView):
     def get_queryset(self):
         pass
 
-class PhaseCreation(generic.CreateView):
+class PhaseCreation(generic.CreateView, LoginRequiredMixin, ListView):
     form_class = PhaseRegistrationForm
     success_url = reverse_lazy('createphase')
     template_name = 'contents/phase.html'
+    model = Phase
+    context_object_name = 'phases'
+    
+    def get_queryset(self):
+       today = datetime.date.today()
+       queryset = Phase.objects.all()
+       return queryset
  
 
-class RoadCreation(generic.CreateView):
+class RoadCreation(generic.CreateView, LoginRequiredMixin, ListView):
     form_class = RoadRegistrationForm
     success_url = reverse_lazy('createroads')
     template_name = 'contents/roads.html'
+    model = Roads
+    context_object_name = 'roads'
+    
+    def get_queryset(self):
+       today = datetime.date.today()
+       queryset = Roads.objects.all()
+       return queryset
  
-class SpotCreation(generic.CreateView):
-     form_class = SpotRegistrationForm
-     success_url = reverse_lazy('createspots')
-     template_name = 'contents/spots.html'
+class SpotCreation(generic.CreateView, LoginRequiredMixin, ListView):
+    form_class = SpotRegistrationForm
+    success_url = reverse_lazy('createspots')
+    template_name = 'contents/spots.html'
+    model = Spots
+    context_object_name = 'spots'
+    
+    def get_queryset(self):
+       today = datetime.date.today()
+       queryset = Spots.objects.all()
+       return queryset
 
-class VehicleCreation(generic.CreateView):
+class VehicleCreation(generic.CreateView, LoginRequiredMixin, ListView):
      form_class = VehicleRegistrationForm
      success_url = reverse_lazy('registervehicle')
      template_name = 'contents/vehicles.html'
+     model = Vehicle
+     context_object_name = 'vehicles'
 
+     def get_queryset(self):
+        today = datetime.date.today()
+        queryset = Vehicle.objects.all()
+        return queryset
 
 
 class DataAnalysis( LoginRequiredMixin, ListView):
@@ -90,16 +117,7 @@ class ProjectReport( LoginRequiredMixin, ListView):
         pass
 
 
-# Displaying information from database
-class VehicleList(ListView):
-    model = Vehicle
-    template_name = 'contents/vehicles.html'
-    context_object_name = 'vehicles'
-
-    def get_queryset(self):
-        today = datetime.date.today()
-        queryset = Vehicle.objects.all()
-        return queryset
+# Displaying information from database  
 
 class CollectorList( LoginRequiredMixin, ListView):
     template_name = 'collectors/list-collectors.html'

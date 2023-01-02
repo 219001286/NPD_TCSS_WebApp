@@ -27,7 +27,7 @@ class Vehicle(models.Model):
     created = models.DateTimeField(auto_now_add=True)
 
     class Meta:
-        ordering = ['-updated', '-created'] 
+        ordering = ['created'] 
 
     def __str__(self):
         return (self.vehicle_category)
@@ -40,7 +40,7 @@ class counting (models.Model):
     updated = models.DateTimeField(auto_now=True)
     created = models.DateTimeField(auto_now_add=True)
     class Meta:
-        ordering = ['-updated', '-created'] 
+        ordering = ['created'] 
 
     def __str__(self):
         return (self.count)
@@ -53,10 +53,10 @@ class Phase(models.Model):
     Starting_date = models.DateTimeField()
     Ending_date = models.DateTimeField()
     class Meta:
-        ordering = ['-Ending_date', '-Starting_date'] 
+        ordering = ['Starting_date'] 
 
     def __str__(self):
-        return (self.count)
+        return (self.Phase_name)
 
  
 # Roads : the which will be constructed during the specified phase
@@ -66,7 +66,7 @@ class Roads(models.Model):
     updated = models.DateTimeField(auto_now=True)
     created = models.DateTimeField(auto_now_add=True)
     class Meta:
-        ordering = ['-updated', '-created'] 
+        ordering = ['created'] 
 
     def __str__(self):
         return (self.Road_name)
@@ -75,11 +75,11 @@ class Roads(models.Model):
 class Spots(models.Model):
     Spot_name = models.CharField(max_length=50)
     Spot_code = models.CharField(max_length=50)
-    Roads = models.ForeignKey('Roads', on_delete=models.CASCADE)
+    Road = models.ForeignKey('Roads', on_delete=models.CASCADE)
     updated = models.DateTimeField(auto_now=True)
     created = models.DateTimeField(auto_now_add=True)
     class Meta:
-        ordering = ['-updated', '-created'] 
+        ordering = ['created'] 
 
     def __str__(self):
         return (self.Spot_name)

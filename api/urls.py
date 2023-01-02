@@ -17,5 +17,5 @@ urlpatterns = [
 
 
       # retrieving data from 
-      path('vehicle-list', views.VehicleList.as_view(), name='report'),
+     
 ]

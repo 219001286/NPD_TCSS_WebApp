@@ -35,8 +35,9 @@
                 </div>
               </div>
             </div>
+            <br/>
             <div class="d-flex align-items-center justify-content-between mt-1 mb-0">
-            <div></div>
+         
               <button
                 type="submit"
                 class="btn btn-block btn-primary btn-lg font-weight-small auth-form-btn"
@@ -51,7 +52,7 @@
           
         </div>
         <div class="col"> 
-           <h4 class="card-title">Spots with in a roads</h4>
+           <h4 class="card-title">Vehicles with in a road</h4>
            <div class="table-responsive">
             <table class="table table-hover">
               <thead>
@@ -62,10 +63,11 @@
                 </tr>
               </thead>
               <tbody>
-                {% if  vehicles %}
+                {% if vehicles %}
               {#   Loop for retrieve all registered vehicle  #}
-           {% for vehicle in vehicles  %}
+           {% for vehicle in vehicles %}
                 <tr>
+                  <td>{{ vehicle.id}}</td>
                   <td>{{ vehicle.vehicle_category}}</td>
                   <td>{{ vehicle.vehicle_image}}</td>
                 </tr>

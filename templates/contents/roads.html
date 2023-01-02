@@ -60,14 +60,34 @@
                   <th>#</th>
                   <th>Road Name</th>
                   <th>Phase</th>
-                  {% comment %} <th>Starting Date</th>
-                  <th>Ending Date</th> {% endcomment %}
+                  <th>Created date</th>
+                  
                 
 
                 </tr>
               </thead>
               <tbody>
-                
+                {% if roads %}
+              {#   Loop for retrieve all registered vehicle  #}
+           {% for road in roads %}
+                <tr>
+                  <td>{{ road.id}}</td>
+                  <td>{{ road.Road_name}}</td>
+                  <td>{{ road.Phase}}</td>
+                  <td>{{ phase.created}}</td>
+                  
+
+                </tr>
+           {% endfor %}
+
+           {% else %}
+           <tr>
+            <td colspan="17"><center> 
+              There is no registered vehicles yet.
+              </center>
+              </td>
+           </tr>
+         {% endif %}
               </tbody>
             </table>
 

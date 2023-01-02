@@ -27,7 +27,7 @@
                     {{ form.Spot_code|as_crispy_field }}
                   </div>
                   <div class="col-sm-12">
-                    {{ form.Roads|as_crispy_field }}
+                    {{ form.Road|as_crispy_field }}
                   </div>
                   {% comment %} <div class="col-sm-12">
                     {{ form.Ending_date|as_crispy_field }}
@@ -60,13 +60,34 @@
                   <th>Spot Name</th>
                   <th>Spot code</th>
                   <th>Road</th>
+                  <th>Created date</th>
                   <th>Data Collector</th>
                 
 
                 </tr>
               </thead>
               <tbody>
-                
+                {% if spots %}
+              {#   Loop for retrieve all registered vehicle  #}
+           {% for spot in spots %}
+                <tr>
+                  <td>{{ spot.id}}</td>
+                  <td>{{ spot.Spot_name}}</td>
+                  <td>{{ spot.Spot_code}}</td>
+                  <td>{{ spot.Road}}</td>
+                  <td>{{ phase.created}}</td>
+
+                </tr>
+           {% endfor %}
+
+           {% else %}
+           <tr>
+            <td colspan="17"><center> 
+              There is no registered spots yet.
+              </center>
+              </td>
+           </tr>
+         {% endif %}
               </tbody>
             </table>
 
