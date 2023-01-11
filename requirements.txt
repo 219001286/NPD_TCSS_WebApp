@@ -13,7 +13,6 @@ coreapi==2.3.3
 coreschema==0.0.4
 cryptography==3.4.8
 dbus-python==1.2.18
-defer==1.0.6
 distro==1.7.0
 distro-info===1.1build1
 Django==4.0.4
