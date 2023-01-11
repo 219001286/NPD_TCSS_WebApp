@@ -89,7 +89,6 @@ sqlparse==0.4.2
 uritemplate==4.1.1
 urllib3==1.26.9
 wadllib==1.3.6
-websocket-client==1.2.3
 whitenoise==6.0.0
 xdg==5
 xlwt==1.3.0
