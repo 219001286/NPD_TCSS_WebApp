@@ -3,10 +3,16 @@ from rest_framework.decorators import api_view
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 from rest_framework.authtoken.models import Token
-
 from accounts.api.serializers import AccountRegisterSerializer
 from accounts import models
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.decorators import api_view, permission_classes
 
+
+
+
+
+  
 
 @api_view(['POST', ])
 def AccountLogoutView(request):
@@ -24,14 +30,14 @@ def AccountRegistrationView(request):
 
         if serializer.is_valid():
             account = serializer.save()
-
             data['response'] = "Registration Successful!"
             data['first_name'] = account.first_name
             data['last_name'] = account.last_name
-            data['email'] = account.email
+            data['gender'] = account.gender
             data['telephone'] = account.telephone
-            data['institute'] = account.institute
-
+            data['collector_spot'] = account.collector_spot
+            data['Id_number'] = account.Id_number
+            data['email'] = account.email
             token = Token.objects.get(user=account).key
             data['token'] = token
 

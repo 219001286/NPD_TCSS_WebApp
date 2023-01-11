@@ -34,8 +34,9 @@ class Vehicle(models.Model):
 
 # counting vehicles
 class counting (models.Model):
-    collector = models.ForeignKey('accounts.CustomUser', on_delete=models.CASCADE, related_name="collector_vehicles", null=True)
+    collector = models.ForeignKey('accounts.CustomUser', on_delete=models.CASCADE, related_name="collector_vehicles", null=False)
     vehicle = models.ForeignKey('Vehicle', on_delete=models.CASCADE)
+    # slug = models.SlugField(max_length=255, unique=True, null=True)
     Traffic_countings = models.IntegerField(null = True)
     updated = models.DateTimeField(auto_now=True)
     created = models.DateTimeField(auto_now_add=True)
@@ -43,7 +44,7 @@ class counting (models.Model):
         ordering = ['created'] 
 
     def __str__(self):
-        return (self.count)
+        return (self.vehicle.vehicle_category)
 
 
 # phase : District will be used as location
@@ -84,3 +85,7 @@ class Spots(models.Model):
     def __str__(self):
         return (self.Spot_name)
 
+    # def save(self, *args, **kwargs):
+    #     if not self.slug:
+    #         self.slug = slugify(self.collector)
+    #     return super().save(*args, **kwargs)
