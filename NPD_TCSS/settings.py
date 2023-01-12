@@ -70,7 +70,11 @@ AUTH_USER_MODEL = 'accounts.CustomUser'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+<<<<<<< HEAD
     # 'whitenoise.middleware.WhiteNoiseMiddleware',
+=======
+    'whitenoise.middleware.WhiteNoiseMiddleware',
+>>>>>>> a3495a860055998d76706a798b5f0e1b907e3d64
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
