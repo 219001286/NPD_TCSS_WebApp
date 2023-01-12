@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-mk&z*ji6)phdre#ej81djhrb+f=sqs($9at92m#-2gk$7-yk1q
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['npdtcss.azurewebsites.net']
 
 
 # Application definition
@@ -111,9 +111,20 @@ DATABASES = {
         'PASSWORD':os.getenv(("DB_PASSWORD")),
         'HOST':'npd-cloud-db.postgres.database.azure.com',
         'PORT': '5432',
-        "OPTIONS":{"sslmode":"require"},
+        "OPTIONS":{"sslmode":"require"}
     }
 }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME':'NPD_Traffic_Count',
+#         'USER':'postgres',
+#         'PASSWORD':"root",
+#         'HOST':'localhost',
+#     }
+# }
+
 
 
 
