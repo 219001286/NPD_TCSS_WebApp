@@ -70,6 +70,7 @@ AUTH_USER_MODEL = 'accounts.CustomUser'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    # 'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -105,10 +106,12 @@ WSGI_APPLICATION = 'NPD_TCSS.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME':'NPD_Traffic_Count',
-        'USER':'postgres',
-        'PASSWORD':'root',
-        'HOST':'localhost'
+        'NAME':'django',
+        'USER':'django@npd-cloud-db',
+        'PASSWORD':os.getenv(("DB_PASSWORD")),
+        'HOST':'npd-cloud-db.postgres.database.azure.com',
+        'PORT': '5432',
+        "OPTIONS":{"sslmode":"require"},
     }
 }
 
