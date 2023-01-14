@@ -35,7 +35,7 @@ class Vehicle(models.Model):
 # counting vehicles
 class counting (models.Model):
     collector = models.ForeignKey('accounts.CustomUser', on_delete=models.CASCADE, related_name="collector_vehicles", null=False)
-    vehicle = models.ForeignKey('Vehicle', on_delete=models.CASCADE)
+    vehicle = models.ForeignKey('Vehicle', on_delete=models.CASCADE, related_name="vehicles")
     # slug = models.SlugField(max_length=255, unique=True, null=True)
     Traffic_countings = models.IntegerField(null = True)
     updated = models.DateTimeField(auto_now=True)

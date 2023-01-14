@@ -1,5 +1,6 @@
 from django.urls import path
 from api import views
+from .views import (searchvehicle)
 
 urlpatterns = [
 
@@ -14,6 +15,9 @@ urlpatterns = [
       path('collector-list', views.CollectorList.as_view(), name='collectorlist'),
       path('clean-data', views.DataAnalysis.as_view(), name='cleandata'),
       path('report', views.ProjectReport.as_view(), name='report'),
+
+      # search 
+      path('search/result', searchvehicle, name='searchvehicle'),
 
 
       # retrieving data from 

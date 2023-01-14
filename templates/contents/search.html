@@ -1,0 +1,65 @@
+{% extends 'base_page.html' %}
+{% load static %}
+{% block title %}Roads{% endblock %} 
+{% load crispy_forms_tags %}
+{% load crispy_forms_filters %}
+{% block content %}
+{% load crispy_forms_tags %}
+
+<main>
+  <div class="container-fluid px-4">
+    <div class="row">
+      <ol class="breadcrumb mb-4">
+          <li class="breadcrumb-item active">Search result/</li>
+      </ol>
+
+      <div class="card mb-4">
+        <div class="card-header">
+            <i class="fas fa-table me-1"></i>
+            {% if submitbutton == 'Search' and request.GET.q != '' %}
+            {% if results %}
+            <b>Traffic on date: {{ request.GET.q }} </b>
+        </div>
+        <div class="card-body table-responsive">
+            <table id="datatablesSimple" width="1000" class="text-center">
+                <thead>
+                    <tr>
+                        <th>Vehicle-Category</th>
+                        <th>Vehicle-Counts</th>
+                        <th>Collectors</th>
+                        <th>Spot Name</th>
+                        <th>Collected date</th>
+                        
+                    </tr>
+                </thead>
+
+                <tbody>
+              
+                  {% for result in results %}
+                <tr>
+                    <td>{{result.vehicle.vehicle_category}}</td>
+                    <td>{{result.Traffic_countings}}</td>
+                    <td>{{result.collector.first_name}}</td>
+                    <td>{{result.collector.spot.Spot_name}}</td>
+                    <td>{{result.updated}}</td>-
+                </tr>
+            {%endfor%}
+
+            {% else %}
+            <tr>
+              <td colspan="5">
+               <center> No search results for this choice please kindly use date!</center>
+              </td>
+           </tr>
+             {% endif %}
+             {% endif %}
+                </tbody>
+            </table>
+        </div>
+    </div>    
+    </div>
+      
+  </div>
+ 
+</main>
+{% endblock %}
