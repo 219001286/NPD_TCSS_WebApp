@@ -27,7 +27,7 @@ class TopVehicleCounterList( LoginRequiredMixin, ListView):
     context_object_name = 'traffic_collector_list'
 
     def get_queryset(self):
-        return CustomUser.objects.count()
+        return CustomUser.objects.filter(is_staff=False).count()
     
     def get_context_data(self, *args, **kwargs):
         today = datetime.date.today()
@@ -39,7 +39,9 @@ class TopVehicleCounterList( LoginRequiredMixin, ListView):
         top_vehicle_counted = counting.objects.aggregate(top_vehicle = Max('Traffic_countings'))['top_vehicle']
         high_counting_vehicles = counting.objects.filter(Traffic_countings=top_vehicle_counted)
 
-        print(top_vehicle_counted)
+        # displaying countings acccording to the date
+        
+        
        # context for displaying data on tampletes
         context['total_traffic'] = total_traffic
         context['percentage'] = percentage
@@ -47,6 +49,7 @@ class TopVehicleCounterList( LoginRequiredMixin, ListView):
         context['daily_counting'] = daily_counting
         context['top_vehicle_counted'] = top_vehicle_counted
         context['high_counting_vehicles'] = high_counting_vehicles
+        
 
         return context
 
@@ -111,11 +114,26 @@ class VehicleCreation(generic.CreateView, LoginRequiredMixin, ListView):
         return queryset
 
 
-class DataAnalysis( LoginRequiredMixin, ListView):
+class DataAnalysis( LoginRequiredMixin, ListView,):
     template_name = 'contents/cleaning.html'
+    model = counting
 
-    def get_queryset(self):
-        pass
+    def get_context_data(self, *args, **kwargs):
+        dates = datetime.date.today()
+        context = super().get_context_data(*args, **kwargs)
+        counting_date = counting.objects.all()
+        total_traffic = counting.objects.aggregate(counts=Sum('Traffic_countings'))
+        context['counting_date'] = counting_date
+        context['total_traffic'] = total_traffic
+        # adt = total_traffic/4
+        # context['adt'] = adt
+
+
+   
+
+        return context
+
+
 
 class ProjectReport( LoginRequiredMixin, ListView):
     template_name = 'contents/report.html'
@@ -128,9 +146,11 @@ class ProjectReport( LoginRequiredMixin, ListView):
 
 class CollectorList( LoginRequiredMixin, ListView):
     template_name = 'collectors/list-collectors.html'
-
+    model = CustomUser
+    context_object_name = 'collectors'
     def get_queryset(self):
-        pass
+       queryset = CustomUser.objects.filter(is_staff=False)
+       return queryset
 
 class CollectorRegistration( LoginRequiredMixin, ListView):
     template_name = 'collectors/register_collectors.html'

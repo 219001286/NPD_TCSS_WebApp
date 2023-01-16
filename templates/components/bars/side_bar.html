@@ -6,10 +6,10 @@
                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                 Dashboard
             </a>
-            <a class="nav-link" href="{% url 'overalldata' %}">
+            {% comment %} <a class="nav-link" href="{% url 'overalldata' %}">
                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                 Data <!--Adding icon for data-->
-            </a>
+            </a> {% endcomment %}
             <div class="sb-sidenav-menu-heading">Traffic Counting</div>
             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
                 <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
@@ -38,20 +38,17 @@
                        All
                     </a>
                     
-                    <a class="nav-link collapsed" href="{% url 'collectorregister' %}"  aria-expanded="false">
+                    {% comment %} <a class="nav-link collapsed" href="{% url 'collectorregister' %}"  aria-expanded="false">
                         Register
-                    </a>
+                    </a> {% endcomment %}
                 </nav>
             </div>
             <div class="sb-sidenav-menu-heading">Traffic Analysis</div>
             <a class="nav-link" href="{% url 'cleandata' %}">
                 <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
-                Cleaning
+                Data analysis & Report
             </a>
-            <a class="nav-link" href="{% url 'report' %}">
-                <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
-                Report
-            </a>
+           
         </div>
     </div>
     <div class="sb-sidenav-footer">

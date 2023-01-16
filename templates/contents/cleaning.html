@@ -1,22 +1,143 @@
 {% extends 'base_page.html' %}
 {% load static %}
-{% block title %} Roads {% endblock %} 
+{% block title %} Data analysis {% endblock %} 
 {% block content %}
 <main>
   <div class="container-fluid px-4">
-     
+    <div class="row">
       <ol class="breadcrumb mb-4">
-          <li class="breadcrumb-item active">Data cleaning</li>
+          <li class="breadcrumb-item active">Analysis/</li>
       </ol>
-      <div class="row">
-          <div class="col-xl-3 col-lg-6">
-            <div>
-              no cleaning yet
-            </div>  
+      
+      
+           <h4 class="card-title">{{counts.vehicle.vehicle_category}}</h4>
      
+           <div class="table-responsive px-2">
+            <table class="table table-hover">
+              <tr style={text-align:center;}>
+              <th width="400">DATE & TIME</th>
+            
+              
+              <th style={text-align:center;} width="400"></th>
+            
+             
+            
+         
+              <th style={text-align:center;} width="400"></th>
+              <th style={text-align:center;} width="400">VEHICLE CATEGORY</th>
+              <th style={text-align:center;} width="400"></th>  
+              <th style={text-align:center;} width="400"></th>
+              <th style={text-align:center;} width="400">TRAFFIC COUNTS</th>
+              
+                <tr>
+            </table>
+            <table class="table table-hover">
+            <tr>
+              
+              <tr>
+              {% if counting_date%}
+                {%for counts in counting_date %}
+
+                <tr>
+
+                  <td>{{counts.updated}}</td>
+                  <td>{{counts.vehicle.vehicle_category}}</td>
+                  <td>{{counts.Traffic_countings}}</td>
+                  
+                  {% endfor %}
+                </tr>
+       
+           
+            </table>
+<br>
+            <table class="table table-hover">
+              <tr>
+                
+               {% comment %} <th>Total Traffic Counts</th> {% endcomment %}
+               {%if total_traffic %}
+               <td>Total Traffic Counts: <b style="color:blue;">{{total_traffic.counts}}</b></td>
+               <td> <a href='{% url 'cleandata' %}'>Calculate ADT</a></td>
+               <td>ANNUAL DAILY TRAFFIC: <b style="color:blue;">{% widthratio total_traffic.counts 4 1 %}</b></td>
+              {%endif%}
+                  </tr>
+             
+                  
+             
+              </table>
+
           </div>
-      </div>
+        </div>
+
+        
+
+           {% else %}
+           <div>No data found</div>
+         {% endif %}
+
+        
+
+      
   </div>
+
+
+  
+
+
+
+  {% comment %} <div class="container-fluid px-4">
+    <div class="row">
+      <ol class="breadcrumb mb-4">
+          <li class="breadcrumb-item active">Data-cleaning/</li>
+      </ol>
+      <div class="card mb-4">
+      <div class="row">
+
+            <h4 class="card-title">Road Name</h4>
+           <div class="table-responsive">
+            <table class="table table-hover">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Date Counted</th>
+                
+                  {% for counts in counting_date %}
+                  <th>{{counts.vehicle.vehicle_category}}</th>
+                  {%endfor%}
+                
+
+                </tr>
+              </thead>
+              <tbody>
+                {% if phases %}
+              {#   Loop for retrieve all registered vehicle  #}
+           {% for phase in phases %}
+                <tr>
+                  <td>{{ phase.id}}</td>
+                  <td>{{ phase.Phase_name}}</td>
+                  <td>{{ phase.Phase_location}}</td>
+                  <td>{{ phase.Starting_date}}</td>
+                  <td>{{ phase.Ending_date}}</td>
+
+                </tr>
+           {% endfor %}
+
+           {% else %}
+           <tr>
+            <td colspan="17"><center> 
+              There is no registered vehicles yet.
+              </center>
+              </td>
+           </tr>
+         {% endif %}
+              </tbody>
+            </table>
+
+          </div>
+        </div>
+      </div>
+ 
+      </div>
+  </div> {% endcomment %}
 </main>
 
 {%endblock%}

@@ -1,21 +1,62 @@
 {% extends 'base_page.html' %}
 {% load static %}
-{% block title %} Roads {% endblock %} 
+{% block title %} Collectors {% endblock %} 
 {% block content %}
 <main>
   <div class="container-fluid px-4">
-     
+    <div class="row">
       <ol class="breadcrumb mb-4">
-          <li class="breadcrumb-item active">All collectors</li>
+          <li class="breadcrumb-item active">Collectors/</li>
       </ol>
-      <div class="row">
-          <div class="col-xl-3 col-lg-6">
-            <div>
-              no collectors registered yet
-            </div>  
-     
+      <div class="card mb-6">
+        <div class="card-header mb-4">
+        <i class="fas fa-table me-1"></i>
+       List of Data collectors you have in the system
+        </div>
+            <div class="card-body table-responsive">
+              <table id="datatablesSimple" width="1000" class="text-center">
+                  <thead>
+                      <tr>
+                          <th>First Name</th>
+                          <th>Last Name</th>
+                          <th>Gender</th>
+                          <th>Phone Number</th>
+                          <th>Email/th>
+                          <th>Id Number</th>
+                          <th>Spot Code</th>
+                          
+                      </tr>
+                      
+                  </thead>
+  
+                  <tbody>
+                    {% if collectors %}
+                  {% for collector in collectors%}
+                  <tr height="70px">
+                      <td>{{collector.first_name}}</td>
+                      <td>{{collector.last_name}}</td>
+                      <td>{{collector.gender}}</td>
+                      <td>{{collector.telephone}}</td>
+                      <td>{{collector.email}}</td>
+                      <td>{{collector.Id_number}}</td>
+                      <td>{{collector.spot.Spot_code}}</td>
+                  </tr>
+              {%endfor%}
+
+              {% else %}
+              <tr>
+                <td colspan="5">
+                 <center> No registered collector yet</center>
+                </td>
+             </tr>
+               {% endif %}
+                  </tbody>
+              </table>
           </div>
+     
+        </div>
       </div>
+   
   </div>
 </main>
 
