@@ -13,5 +13,5 @@ class SignupPageView(generic.CreateView):
 
     def form_valid(self, form):
         # Setting is_staff to the users
-        form.instance.is_staff = True
+        form.instance.is_superuser = True
         return super().form_valid(form)
